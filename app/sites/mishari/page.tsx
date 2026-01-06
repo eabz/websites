@@ -59,7 +59,9 @@ export default function MischariPage() {
       `}</style>
             <header className={styles.header}>
                 <div className={styles.nav}>
-                    <div className={styles.logo}>MISCHARI</div>
+                    <div className={styles.logo}>
+                        <img src="/logos/mischari.png" alt="Mischari Logo" className={styles.logoImg} />
+                    </div>
                     <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                     <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ''}`}>
                         <li><button className={`${styles.navLink} ${activeTab === 'inicio' ? styles.navLinkActive : ''}`} onClick={() => showPage('inicio')}>Inicio</button></li>

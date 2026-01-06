@@ -18,7 +18,9 @@ export default function AteriaPage() {
     return (
         <div className={styles.container}>
             <header className={styles.header}>
-                <div className={styles.logo}>ATERIA <span>LOGÍSTICA</span></div>
+                <div className={styles.logo}>
+                    <img src="/logos/ateria.png" alt="Ateria Logo" className={styles.logoImg} />
+                </div>
                 <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                 <nav>
                     <ul className={`${styles.navList} ${menuOpen ? styles.show : ''}`} id="nav-list">

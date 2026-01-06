@@ -553,3 +553,8 @@
         padding: 20px;
     }
 }
+.logoImg {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}

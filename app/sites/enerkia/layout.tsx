@@ -9,6 +9,9 @@ export const metadata: Metadata = {
         description: 'El futuro de su empresa comienza hoy. Hardware y soluciones tecnológicas.',
         type: 'website',
     },
+    icons: {
+        icon: '/favicons/enerkia.png',
+    },
 };
 
 export default function EnerkiaLayout({

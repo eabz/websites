@@ -175,19 +175,19 @@
 
 @keyframes slideBg {
     0% {
-        background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-image: url('/images/ateria/hero.png');
     }
 
     33% {
-        background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-image: url('/images/ateria/hero.png');
     }
 
     66% {
-        background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-image: url('/images/ateria/hero.png');
     }
 
     100% {
-        background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-image: url('/images/ateria/hero.png');
     }
 }
 
@@ -342,4 +342,10 @@
     .menuToggle {
         display: block;
     }
+}
+
+.logoImg {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }

@@ -23,7 +23,7 @@ export default function XenopusPage() {
             <header className={styles.header}>
                 <div className={styles.navCapsule}>
                     <div className={styles.logo}>
-                        <span className={styles.logoIcon}>✦</span> XENOPUS
+                        <img src="/logos/xenopus.png" alt="Xenopus Logo" className={styles.logoImg} />
                     </div>
                     <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                     <nav>

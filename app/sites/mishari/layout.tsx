@@ -9,6 +9,9 @@ export const metadata: Metadata = {
         description: 'Solidez, Calidad y Compromiso Industrial.',
         type: 'website',
     },
+    icons: {
+        icon: '/favicons/mischari.png',
+    },
 };
 
 export default function MischariLayout({

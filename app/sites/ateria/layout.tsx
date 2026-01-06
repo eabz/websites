@@ -9,6 +9,9 @@ export const metadata: Metadata = {
         description: 'Conectando familias y negocios con alcance nacional.',
         type: 'website',
     },
+    icons: {
+        icon: '/favicons/ateria.png',
+    },
 };
 
 export default function AteriaLayout({

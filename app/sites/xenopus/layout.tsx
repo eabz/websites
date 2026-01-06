@@ -9,6 +9,9 @@ export const metadata: Metadata = {
         description: 'Evolución Corporativa Natural. Estrategia y adaptabilidad para tu negocio.',
         type: 'website',
     },
+    icons: {
+        icon: '/favicons/xenopus.png',
+    },
 };
 
 export default function XenopusLayout({

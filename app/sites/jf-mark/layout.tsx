@@ -9,6 +9,9 @@ export const metadata: Metadata = {
         description: 'Estrategia. Precisión. Resultados. Consultoría para líderes.',
         type: 'website',
     },
+    icons: {
+        icon: '/favicons/jf-mark.png',
+    },
 };
 
 export default function JFMarkLayout({

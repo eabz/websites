@@ -21,7 +21,9 @@ export default function JFMarkPage() {
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
       `}</style>
             <header className={styles.header}>
-                <div className={styles.logo}>JF MARK <span>CONSULTORES</span></div>
+                <div className={styles.logo}>
+                    <img src="/logos/jf-mark.png" alt="JF Mark Logo" className={styles.logoImg} />
+                </div>
                 <div className={styles.menuIcon} onClick={toggleMenu}>{menuOpen ? '✕' : '☰'}</div>
                 <nav>
                     <ul className={`${styles.navList} ${menuOpen ? styles.show : ''}`} id="nav-list">

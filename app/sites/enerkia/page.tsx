@@ -21,7 +21,9 @@ export default function EnerkiaPage() {
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap');
       `}</style>
             <header className={styles.header}>
-                <div className={styles.logo}>ENERKIA <span>22</span></div>
+                <div className={styles.logo}>
+                    <img src="/logos/enerkia.png" alt="Enerkia Logo" className={styles.logoImg} />
+                </div>
                 <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                 <nav>
                     <ul className={`${styles.navList} ${menuOpen ? styles.show : ''}`} id="nav-list">
