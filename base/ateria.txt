@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateria Logística y Traslados</title>
+    <style>
+        /* --- ESTILOS GENERALES (CSS) --- */
+        :root {
+            --color-primary: #0F2C59; /* Azul Profundo */
+            --color-accent: #8E1616;  /* Vino/Terracota */
+            --color-light: #F8F9FA;
+            --color-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal no deseado */
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #FFD700; /* Dorado para el detalle */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        /* --- CONTENEDOR DE PÁGINAS --- */
+        main {
+            /* Esto asegura que el contenido respete la barra fija */
+            padding-top: 80px; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-section {
+            /* Por defecto ocultas */
+            display: none; 
+            width: 100%;
+            /* Animación suave de entrada */
+            animation: fadeIn 0.4s ease-in-out;
+            padding-bottom: 2rem;
+        }
+
+        /* Clase para mostrar la sección activa */
+        .page-section.active {
+            display: block; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- PÁGINA: INICIO (LOBBY) --- */
+        #inicio.active {
+            display: flex; /* Flexbox específico para centrar el inicio */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Restamos el header para que ocupe exactamente la pantalla */
+            height: calc(100vh - 80px); 
+            padding: 0;
+            position: absolute;
+            top: 80px;
+            left: 0;
+        }
+
+        /* Carrusel de Fondo */
+        .carousel-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: slideBg 15s infinite;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 44, 89, 0.6); 
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #a02020;
+        }
+
+        @keyframes slideBg {
+            0% { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); }
+            33% { background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); }
+            66% { background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); }
+            100% { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); }
+        }
+
+        /* --- PÁGINA: CONÓCENOS (MODIFICADA) --- */
+        .container-padding {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-conocenos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid var(--color-primary);
+            /* Transición suave para el efecto hover */
+            transition: all 0.4s ease; 
+            cursor: default;
+        }
+
+        .card h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            transition: color 0.4s ease;
+        }
+
+        .card p {
+            transition: color 0.4s ease;
+        }
+
+        /* EFECTO HOVER SOLICITADO */
+        .card:hover {
+            background-color: var(--color-primary); /* Fondo Azul */
+            transform: translateY(-10px); /* Ligera elevación */
+            border-top: 5px solid #FFD700; /* Detalle dorado al hacer hover */
+        }
+
+        .card:hover h3, 
+        .card:hover p {
+            color: white !important; /* Texto blanco forzado */
+        }
+
+        /* --- PÁGINA: SERVICIOS --- */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--color-primary);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        /* --- PÁGINA: CONTACTO --- */
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto; /* Empuja el footer al fondo si hay poco contenido */
+            width: 100%;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav ul { flex-direction: column; background: var(--color-primary); position: absolute; top: 70px; right: 0; width: 100%; display: none; padding: 20px; }
+            nav ul.show { display: flex; }
+            .menu-toggle { display: block; cursor: pointer; font-size: 1.5rem; color: white; }
+        }
+        @media (min-width: 769px) {
+            .menu-toggle { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ATERIA <span>LOGÍSTICA</span></div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav>
+            <ul id="nav-list">
+                <li><a onclick="showPage('inicio')">Inicio</a></li>
+                <li><a onclick="showPage('conocenos')">Conócenos</a></li>
+                <li><a onclick="showPage('servicios')">Servicios</a></li>
+                <li><a onclick="showPage('contacto')">Contáctanos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="page-section active">
+            <div class="carousel-bg"></div>
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1>Ateria Logística y Traslados</h1>
+                <p>Excelencia queretana en movimiento. Conectando familias y negocios con alcance nacional.</p>
+                <button class="btn" onclick="showPage('servicios')">Ver Servicios</button>
+            </div>
+        </section>
+
+        <section id="conocenos" class="page-section">
+            <div class="container-padding">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--color-primary); font-size: 2.5rem;">Nuestra Esencia</h2>
+                <div class="grid-conocenos">
+                    <div class="card">
+                        <h3>Misión</h3>
+                        <p>Brindar soluciones logísticas integrales y seguras que conecten a México, impulsadas por la calidez de nuestros valores familiares y la excelencia operativa.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Visión</h3>
+                        <p>Ser el referente logístico más confiable del Bajío con proyección nacional, reconocidos por nuestra capacidad de respuesta y trato humano.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Nuestro Propósito</h3>
+                        <p>Ofrecemos un servicio que honra nuestras raíces queretanas, entendiendo que detrás de cada carga hay una promesa que cumplir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="page-section">
+            <div class="container-padding">
+                <h2 style="text-align: center; margin-bottom: 1rem; color: var(--color-primary); font-size: 2.5rem;">Soluciones Profesionales</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 3rem;">Desde Querétaro para todo el país, movemos tu negocio con seguridad.</p>
+                
+                <div class="services-container">
+                    <div class="service-item">
+                        <div class="service-icon">🚛</div>
+                        <h4>Transporte Nacional</h4>
+                        <p>Cobertura completa en las principales rutas de México con monitoreo 24/7.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">📦</div>
+                        <h4>Paquetería y Última Milla</h4>
+                        <p>Entregas precisas y puntuales para e-commerce y distribución retail.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🏭</div>
+                        <h4>Logística Industrial</h4>
+                        <p>Soluciones especializadas para el corredor industrial del Bajío.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🤝</div>
+                        <h4>Fletes Dedicados</h4>
+                        <p>Unidades exclusivas para tu carga, garantizando integridad y tiempos récord.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="page-section">
+            <div class="container-padding">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--color-primary); font-size: 2.5rem;">Contáctanos</h2>
+                <div class="contact-wrapper">
+                    <p style="text-align: center; margin-bottom: 1.5rem;">
+                        Escríbenos para cotizar tu traslado o déjanos tus comentarios.
+                    </p>
+                    <form onsubmit="event.preventDefault(); alert('Gracias por tu mensaje. Nos pondremos en contacto a la brevedad.');">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje / Comentarios</label>
+                            <textarea rows="5" placeholder="Cuéntanos tus necesidades logísticas..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                    
+                    <div style="margin-top: 2rem; text-align: center; border-top: 1px solid #eee; padding-top: 1rem;">
+                        <p><strong>Ubicación:</strong> Santiago de Querétaro, Qro.</p>
+                        <p><strong>Email:</strong> <a href="mailto:informacion@aterialogistic.com" style="color: var(--color-primary); text-decoration: none; font-weight: bold;">informacion@aterialogistic.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ateria Logística y Traslados. Orgullosamente Queretanos.</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Contacto: informacion@aterialogistic.com</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // 1. Ocultar TODAS las secciones primero
+            // Esto garantiza que no convivan dos secciones al mismo tiempo
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                // Forzamos la ocultación del estilo inline si existiera
+                section.style.display = 'none';
+            });
+
+            // 2. Identificar la sección objetivo
+            const activeSection = document.getElementById(pageId);
+            
+            // 3. Mostrar la sección objetivo según su tipo
+            // Añadimos la clase active
+            activeSection.classList.add('active');
+
+            if(pageId === 'inicio') {
+                // Inicio necesita display flex para centrar el contenido verticalmente
+                activeSection.style.display = 'flex';
+            } else {
+                // Las demás páginas usan block normal
+                activeSection.style.display = 'block';
+            }
+
+            // 4. Cerrar menú móvil si está abierto
+            const navList = document.getElementById('nav-list');
+            navList.classList.remove('show');
+            
+            // 5. Scroll arriba para simular cambio de página real
+            window.scrollTo(0,0);
+        }
+
+        function toggleMenu() {
+            const navList = document.getElementById('nav-list');
+            navList.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

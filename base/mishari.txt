@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mischari | Distribuidora Industrial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* --- 1. VARIABLES Y ESTILOS BASE --- */
+        :root {
+            --color-black: #1A1A1A;
+            --color-taupe: #4A403A;
+            --color-brown: #8B5A2B;
+            --color-cream: #F5F5DC; /* Color crema claro para textos sobre oscuro */
+            --color-white: #FFFFFF;
+            --color-gray: #8C8C8C;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --modal-overlay: rgba(0, 0, 0, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--color-black);
+            background-color: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--color-taupe); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        ul { list-style: none; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 2. NAVEGACIÓN --- */
+        header {
+            background-color: var(--color-white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--color-taupe); letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding-bottom: 5px; }
+        .nav-links a.active-link { color: var(--color-brown); border-bottom: 2px solid var(--color-brown); }
+
+        /* --- 3. GESTIÓN DE VISTAS --- */
+        .page-section {
+            display: none;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            min-height: 100vh;
+            animation: fadeIn 0.6s ease-out;
+        }
+        .page-section.active-section { display: block; }
+
+        /* --- 4. CARRUSELES --- */
+        .carousel-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .carousel-slide.active-slide { opacity: 1; }
+        .overlay-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 0; }
+        .small-carousel-container { position: relative; width: 100%; height: 400px; overflow: hidden; border-radius: 4px; box-shadow: var(--shadow); }
+        .small-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s; }
+        .small-slide.active-slide { opacity: 1; }
+
+        /* --- 5. ESTILOS DE SECCIONES GENERALES --- */
+        #inicio.active-section {
+            display: flex; align-items: center; justify-content: center;
+            padding-top: 0; height: 100vh; position: relative; overflow: hidden;
+            text-align: center; color: white;
+        }
+        #inicio h1 { color: white; font-size: 3.5rem; margin-bottom: 1rem; position: relative; z-index: 2; }
+        #inicio p { font-size: 1.2rem; letter-spacing: 1px; color: #f0f0f0; position: relative; z-index: 2; }
+        .hero-content { position: relative; z-index: 2; }
+
+        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.2rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--color-brown); margin: 15px auto 0; }
+        
+        .btn {
+            display: inline-block; padding: 12px 30px; margin-top: 20px;
+            background-color: var(--color-taupe); color: white; font-weight: 600;
+            letter-spacing: 1px; border-radius: 2px; border: none; cursor: pointer;
+        }
+        .btn:hover { background-color: var(--color-brown); }
+
+        .about-grid, .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .mv-card { background: var(--color-cream); padding: 30px; border-left: 4px solid var(--color-taupe); margin-bottom: 20px; }
+
+        /* --- 6. SERVICIOS (ZIG-ZAG) --- */
+        .service-feature { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; background: white; }
+        .service-feature:nth-child(even) { flex-direction: row-reverse; }
+        .service-img-container { flex: 1; height: 350px; overflow: hidden; border-radius: 4px; box-shadow: var(--shadow); }
+        .service-img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .service-img-container:hover img { transform: scale(1.05); }
+        .service-text { flex: 1; padding: 20px; }
+        .service-text h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--color-taupe); display: flex; align-items: center; gap: 15px; }
+        .service-text p { color: #555; line-height: 1.8; margin-bottom: 20px; }
+        .service-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .service-list i { color: var(--color-brown); font-size: 0.8rem; }
+
+        /* --- 7. MATERIALES --- */
+        .materials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .material-item { 
+            position: relative; height: 280px; overflow: hidden; cursor: pointer; 
+            border-radius: 4px; box-shadow: var(--shadow);
+        }
+        .material-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .material-item:hover img { transform: scale(1.1); filter: brightness(70%); }
+        
+        .material-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(74, 64, 58, 0.95); color: white;
+            padding: 15px; transform: translateY(0); text-align: center;
+            border-top: 2px solid var(--color-brown);
+        }
+        
+        /* CORRECCIÓN 1: Color claro para los títulos de materiales */
+        .material-overlay h3 {
+            color: var(--color-cream) !important; /* Forzamos color crema/claro */
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .click-hint { font-size: 0.75rem; text-transform: uppercase; margin-top: 5px; opacity: 0.8; color: var(--color-cream); letter-spacing: 1px; }
+
+        /* --- 8. MODALES --- */
+        .modal-backdrop {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: var(--modal-overlay);
+            animation: fadeIn 0.3s;
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background-color: var(--color-white); margin: auto; padding: 0;
+            width: 90%; max-width: 900px;
+            position: relative; border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column;
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-header {
+            background: var(--color-taupe); color: white; padding: 25px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .modal-body { padding: 40px; display: grid; grid-template-columns: 2fr 3fr; gap: 40px; }
+        .close-modal { font-size: 30px; font-weight: bold; cursor: pointer; color: white; }
+        
+        /* Estilos para la imagen dentro del modal */
+        .modal-img-style {
+            width: 100%; 
+            height: 300px; /* CORRECCIÓN 2: Altura fija para evitar que se expandan demasiado */
+            object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+            border-radius: 4px; 
+            margin-bottom: 15px;
+        }
+
+        .modal-info h4 { color: var(--color-brown); margin-top: 20px; margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .modal-info p { margin-bottom: 15px; color: #444; }
+        .modal-info ul { list-style: none; margin-left: 5px; }
+        .modal-info li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .modal-info li::before { content: '•'; color: var(--color-brown); font-weight: bold; position: absolute; left: 0; }
+
+        /* CONTACTO */
+        .map-frame { width: 100%; height: 300px; background: #ddd; margin-top: 20px; filter: grayscale(100%); }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; background: #f9f9f9; }
+        footer { background-color: #111; color: #666; text-align: center; padding: 20px 0; display: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid, .contact-container, .modal-body { grid-template-columns: 1fr; }
+            .service-feature, .service-feature:nth-child(even) { flex-direction: column; gap: 20px; }
+            .service-img-container { width: 100%; height: 250px; }
+            #inicio h1 { font-size: 2.5rem; }
+            .modal-content { width: 95%; margin: 20px auto; }
+            .modal-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MISCHARI</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showSection('inicio')" id="link-inicio" class="active-link">Inicio</a></li>
+                    <li><a href="#" onclick="showSection('nosotros')" id="link-nosotros">Quiénes Somos</a></li>
+                    <li><a href="#" onclick="showSection('servicios')" id="link-servicios">Servicios</a></li>
+                    <li><a href="#" onclick="showSection('materiales')" id="link-materiales">Materiales</a></li>
+                    <li><a href="#" onclick="showSection('contacto')" id="link-contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="inicio" class="page-section active-section">
+        <div class="carousel-bg">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80" class="carousel-slide active-slide">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1950&q=80" class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1950&q=80" class="carousel-slide">
+        </div>
+        <div class="overlay-bg"></div>
+        <div class="hero-content">
+            <h1>MISCHARI</h1>
+            <p>SOLIDEZ, CALIDAD Y COMPROMISO INDUSTRIAL</p>
+            <br>
+            <a onclick="showSection('servicios')" class="btn" style="background:white; color:var(--color-taupe); cursor:pointer;">Conocer Más</a>
+        </div>
+    </div>
+
+    <div id="nosotros" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Esencia</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p style="margin-bottom: 20px;">En <strong>Mischari</strong>, no solo distribuimos materiales; forjamos alianzas estratégicas. Con años de experiencia en el sector del Bajío, entendemos que cada entrega cuenta para mantener al mundo girando.</p>
+                    <div class="mv-card">
+                        <h3>Misión</h3>
+                        <p>Proveer soluciones materiales integrales de clase mundial que impulsen la eficiencia, seguridad y productividad de nuestros clientes.</p>
+                    </div>
+                    <div class="mv-card">
+                        <h3>Visión</h3>
+                        <p>Consolidarnos como el distribuidor industrial más confiable de México, reconocidos por nuestra capacidad de respuesta y excelencia logística.</p>
+                    </div>
+                </div>
+                <div class="small-carousel-container">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" class="small-slide active-slide">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" class="small-slide">
+                    <img src="https://images.unsplash.com/photo-1565514020176-db9391039757?auto=format&fit=crop&w=800&q=80" class="small-slide">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="servicios" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Soluciones Industriales</h2>
+            
+            <div class="service-feature">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&w=1000&q=80" alt="Logística Camión">
+                </div>
+                <div class="service-text">
+                    <h3><i class="fas fa-truck-moving"></i> Logística y Distribución</h3>
+                    <p>Contamos con una flota moderna y monitoreada vía GPS para garantizar que sus materiales lleguen seguros y a tiempo, sin importar la ubicación de su proyecto.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Cobertura nacional con énfasis en el Bajío.</li>
+                        <li><i class="fas fa-check"></i> Rastreo en tiempo real de pedidos.</li>
+                        <li><i class="fas fa-check"></i> Maniobras de carga y descarga especializada.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-feature">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1000&q=80" alt="Almacén">
+                </div>
+                <div class="service-text">
+                    <h3><i class="fas fa-boxes"></i> Abastecimiento Estratégico</h3>
+                    <p>Sabemos que detener la línea de producción no es una opción. Gestionamos inventarios dedicados y entregas "Just-in-Time" para optimizar su flujo de trabajo.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Gestión de stock de seguridad.</li>
+                        <li><i class="fas fa-check"></i> Suministro programado para obras a largo plazo.</li>
+                        <li><i class="fas fa-check"></i> Adquisición de materiales difíciles de encontrar.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-feature">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1000&q=80" alt="Ingenieros">
+                </div>
+                <div class="service-text">
+                    <h3><i class="fas fa-clipboard-check"></i> Consultoría Técnica</h3>
+                    <p>No solo vendemos productos, ofrecemos experiencia. Nuestro equipo de ingenieros le asesora para seleccionar el material correcto que optimice costos y durabilidad.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Análisis de especificaciones técnicas.</li>
+                        <li><i class="fas fa-check"></i> Recomendación de materiales alternativos de alto rendimiento.</li>
+                        <li><i class="fas fa-check"></i> Certificaciones de calidad y normas ISO.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="materiales" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Catálogo Especializado</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #666;">Seleccione una categoría para desplegar la ficha técnica detallada.</p>
+            
+            <div class="materials-grid">
+                <div class="material-item" onclick="openModal('modal-acero')">
+                    <img src="https://images.unsplash.com/photo-1533235339243-7ef5a74df6eb?auto=format&fit=crop&w=800&q=80" alt="Vigas de Acero">
+                    <div class="material-overlay">
+                        <h3>Aceros y Metales</h3>
+                        <div class="click-hint"><i class="fas fa-plus"></i> Ver Ficha Técnica</div>
+                    </div>
+                </div>
+                
+                <div class="material-item" onclick="openModal('modal-herramientas')">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Herramientas">
+                    <div class="material-overlay">
+                        <h3>Herramientas</h3>
+                        <div class="click-hint"><i class="fas fa-plus"></i> Ver Ficha Técnica</div>
+                    </div>
+                </div>
+
+                <div class="material-item" onclick="openModal('modal-polimeros')">
+                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=800&q=80" alt="Polímeros">
+                    <div class="material-overlay">
+                        <h3>Polímeros Industriales</h3>
+                        <div class="click-hint"><i class="fas fa-plus"></i> Ver Ficha Técnica</div>
+                    </div>
+                </div>
+
+                <div class="material-item" onclick="openModal('modal-construccion')">
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" alt="Construcción">
+                    <div class="material-overlay">
+                        <h3>Insumos Construcción</h3>
+                        <div class="click-hint"><i class="fas fa-plus"></i> Ver Ficha Técnica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contacto" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Atención Personalizada</h3>
+                    <p style="margin: 20px 0;">Estamos listos para cotizar su proyecto. Visítenos o escríbanos.</p>
+                    <p><strong>📍 Dirección:</strong><br>Blvd. Bernardo Quintana 7001-int 216,<br>Centro Sur, Santiago de Querétaro, Qro.</p>
+                    <br>
+                    <p><strong>📧 Correo:</strong> contacto@mischari.com.mx</p>
+                    <p><strong>⏰ Horario:</strong> Lun-Vie: 9am - 5pm</p>
+                    <div class="map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.630045145749!2d-100.37038872395758!3d20.562306003551785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d34526d11f8b89%3A0x6a123f3f3f3f3f3f!2sBlvd.%20Bernardo%20Quintana%207001%2C%20Centro%20Sur%2C%2076090%20Santiago%20de%20Quer%C3%A9taro%2C%20Qro.%2C%20M%C3%A9xico!5e0!3m2!1ses!2s!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <input type="text" placeholder="Nombre Completo" required>
+                        <input type="email" placeholder="Correo Corporativo" required>
+                        <input type="text" placeholder="Empresa / Asunto">
+                        <textarea rows="6" placeholder="Detalle su requerimiento o solicite cotización..." required></textarea>
+                        <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer">
+        <div class="container">
+            <p>© 2023 Mischari Comercializadora. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="modal-acero" class="modal-backdrop" onclick="closeModal('modal-acero')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Aceros y Metales</h2>
+                <span class="close-modal" onclick="closeModal('modal-acero')">×</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1533235339243-7ef5a74df6eb?auto=format&fit=crop&w=800&q=80" class="modal-img-style">
+                    <p style="font-size:0.9rem; color:#666;">Distribuimos materiales certificados bajo normas ASTM y SAE.</p>
+                </div>
+                <div class="modal-info">
+                    <p>En Mischari somos especialistas en aceros de alto grado para estructuras críticas y manufactura.</p>
+                    
+                    <h4>Inventario Principal</h4>
+                    <ul>
+                        <li><strong>Estructural:</strong> Vigas IPR, IPS, Canales U, Ángulos.</li>
+                        <li><strong>Planos:</strong> Lámina negra, decapada, galvanizada y antiderrapante.</li>
+                        <li><strong>Tubular:</strong> PTR, Tubo mecánico, Cédula 40 y 80.</li>
+                        <li><strong>Especiales:</strong> Aceros inoxidables (304, 316) y grado herramienta.</li>
+                    </ul>
+
+                    <h4>Aplicaciones</h4>
+                    <p>Naves industriales, puentes, maquinaria pesada y carrocerías.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-herramientas" class="modal-backdrop" onclick="closeModal('modal-herramientas')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Herramientas Industriales</h2>
+                <span class="close-modal" onclick="closeModal('modal-herramientas')">×</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" class="modal-img-style">
+                </div>
+                <div class="modal-info">
+                    <p>Equipamiento de grado profesional diseñado para soportar las exigencias de líneas de producción continuas.</p>
+                    
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><strong>Eléctricas:</strong> Taladros, esmeriles, sierras de banco de alto rendimiento.</li>
+                        <li><strong>Neumáticas:</strong> Llaves de impacto, compresores y pistolas de aire.</li>
+                        <li><strong>Manuales:</strong> Juegos de llaves, dados y torquímetros certificados.</li>
+                        <li><strong>Seguridad (EPP):</strong> Cascos, guantes de corte, calzado dieléctrico.</li>
+                    </ul>
+
+                    <h4>Marcas</h4>
+                    <p>Manejamos marcas líderes globales con garantía de fábrica y refacciones disponibles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-polimeros" class="modal-backdrop" onclick="closeModal('modal-polimeros')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Polímeros y Plásticos de Ingeniería</h2>
+                <span class="close-modal" onclick="closeModal('modal-polimeros')">×</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=800&q=80" class="modal-img-style">
+                </div>
+                <div class="modal-info">
+                    <p>Materiales sintéticos avanzados para sustitución de piezas metálicas, aislamiento y resistencia química.</p>
+                    
+                    <h4>Materiales Disponibles</h4>
+                    <ul>
+                        <li><strong>Nylamid (NYLON):</strong> Barras, placas y bujes autolubricados.</li>
+                        <li><strong>PTFE (Teflón):</strong> Alta resistencia a temperatura y agentes químicos.</li>
+                        <li><strong>Policarbonato:</strong> Laminas sólidas y celulares de alto impacto.</li>
+                        <li><strong>UHMW-PE:</strong> Polietileno de ultra alto peso molecular para deslizamiento.</li>
+                    </ul>
+
+                    <h4>Presentaciones</h4>
+                    <p>Venta por tramo, barra completa o placa cortada a medida según plano.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-construccion" class="modal-backdrop" onclick="closeModal('modal-construccion')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Insumos para Construcción</h2>
+                <span class="close-modal" onclick="closeModal('modal-construccion')">×</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" class="modal-img-style">
+                </div>
+                <div class="modal-info">
+                    <p>Soluciones completas para obra civil e industrial, desde la cimentación hasta los acabados.</p>
+                    
+                    <h4>Catálogo General</h4>
+                    <ul>
+                        <li><strong>Acero de Refuerzo:</strong> Varilla corrugada (G-42, G-50), alambrón, malla electrosoldada.</li>
+                        <li><strong>Cementantes:</strong> Cemento gris, mortero y agregados pétreos.</li>
+                        <li><strong>Químicos:</strong> Impermeabilizantes, aditivos para concreto y selladores.</li>
+                        <li><strong>Ligeros:</strong> Panel de yeso, perfiles galvanizados y plafones.</li>
+                    </ul>
+
+                    <h4>Logística a Obra</h4>
+                    <p>Entregas programadas directamente a pie de obra con camiones de volteo o plataforma.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(s => s.classList.remove('active-section'));
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(l => l.classList.remove('active-link'));
+            const activeLink = document.getElementById('link-' + sectionId);
+            if(activeLink) activeLink.classList.add('active-link');
+
+            const footer = document.getElementById('main-footer');
+            footer.style.display = (sectionId === 'inicio') ? 'none' : 'block';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        function startCarousel(className, intervalTime) {
+            let slides = document.querySelectorAll(className);
+            let currentIndex = 0;
+            setInterval(() => {
+                slides[currentIndex].classList.remove('active-slide');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active-slide');
+            }, intervalTime);
+        }
+        startCarousel('.carousel-slide', 4000);
+        startCarousel('.small-slide', 3000);
+    </script>
+</body>
+</html>
