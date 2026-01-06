@@ -137,9 +137,11 @@
     transition: opacity 1.5s ease-in-out;
 }
 
-.activeSlide {
+.carouselSlide.activeSlide {
     opacity: 1;
 }
+
+/* .activeSlide removed from here to handle specific cases correctly */
 
 .overlayBg {
     position: absolute;
@@ -239,6 +241,10 @@
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s;
+}
+
+.smallSlide.activeSlide {
+    opacity: 1;
 }
 
 /* --- SERVICIOS --- */

@@ -15,15 +15,15 @@ export default function MischariPage() {
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const heroImages = [
-        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80',
-        'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1950&q=80',
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1950&q=80'
+        '/images/mishari/hero.png',
+        '/images/mishari/steel.png',
+        '/images/mishari/engineers.png'
     ];
 
     const smallImages = [
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1565514020176-db9391039757?auto=format&fit=crop&w=800&q=80'
+        '/images/mishari/truck.png',
+        '/images/mishari/shelves.png',
+        '/images/mishari/tools.png'
     ];
 
     // Hero carousel effect
@@ -122,7 +122,7 @@ export default function MischariPage() {
 
                             <div className={styles.serviceFeature}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&w=1000&q=80" alt="Logística Camión" />
+                                    <img src="/images/mishari/truck.png" alt="Logística Camión" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-truck-moving" style={{ marginRight: '10px' }}></i> Logística y Distribución</h3>
@@ -137,7 +137,7 @@ export default function MischariPage() {
 
                             <div className={`${styles.serviceFeature} ${styles.serviceFeatureEven}`}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1000&q=80" alt="Almacén" />
+                                    <img src="/images/mishari/shelves.png" alt="Almacén" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-boxes" style={{ marginRight: '10px' }}></i> Abastecimiento Estratégico</h3>
@@ -152,7 +152,7 @@ export default function MischariPage() {
 
                             <div className={styles.serviceFeature}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1000&q=80" alt="Ingenieros" />
+                                    <img src="/images/mishari/engineers.png" alt="Ingenieros" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-clipboard-check" style={{ marginRight: '10px' }}></i> Consultoría Técnica</h3>
@@ -176,7 +176,7 @@ export default function MischariPage() {
 
                             <div className={styles.materialsGrid}>
                                 <div className={styles.materialItem} onClick={() => openModal('modal-acero')}>
-                                    <img src="https://images.unsplash.com/photo-1533235339243-7ef5a74df6eb?auto=format&fit=crop&w=800&q=80" alt="Vigas de Acero" />
+                                    <img src="/images/mishari/steel.png" alt="Vigas de Acero" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Aceros y Metales</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -184,7 +184,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-herramientas')}>
-                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Herramientas" />
+                                    <img src="/images/mishari/tools.png" alt="Herramientas" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Herramientas</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -192,7 +192,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-polimeros')}>
-                                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=800&q=80" alt="Polímeros" />
+                                    <img src="/images/mishari/polymers.png" alt="Polímeros" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Polímeros Industriales</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -200,7 +200,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-construccion')}>
-                                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" alt="Construcción" />
+                                    <img src="/images/mishari/hero.png" alt="Construcción" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Insumos Construcción</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -252,7 +252,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="https://images.unsplash.com/photo-1533235339243-7ef5a74df6eb?auto=format&fit=crop&w=800&q=80" className={styles.modalImgStyle} alt="Acero" />
+                                <img src="/images/mishari/steel.png" className={styles.modalImgStyle} alt="Acero" />
                                 <p style={{ fontSize: '0.9rem', color: '#666' }}>Distribuimos materiales certificados bajo normas ASTM y SAE.</p>
                             </div>
                             <div className={styles.modalInfo}>
@@ -283,7 +283,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" className={styles.modalImgStyle} alt="Herramientas" />
+                                <img src="/images/mishari/tools.png" className={styles.modalImgStyle} alt="Herramientas" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Equipamiento de grado profesional diseñado para soportar las exigencias de líneas de producción continuas.</p>
@@ -313,7 +313,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=800&q=80" className={styles.modalImgStyle} alt="Polimeros" />
+                                <img src="/images/mishari/polymers.png" className={styles.modalImgStyle} alt="Polimeros" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Materiales sintéticos avanzados para sustitución de piezas metálicas, aislamiento y resistencia química.</p>
@@ -343,7 +343,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" className={styles.modalImgStyle} alt="Construccion" />
+                                <img src="/images/mishari/hero.png" className={styles.modalImgStyle} alt="Construccion" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Soluciones completas para obra civil e industrial, desde la cimentación hasta los acabados.</p>
