@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         type: 'website',
     },
     icons: {
-        icon: '/favicons/mischari.png',
+        icon: '/favicons/mishari.png',
     },
 };
 

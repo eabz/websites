@@ -60,7 +60,7 @@ export default function MischariPage() {
             <header className={styles.header}>
                 <div className={styles.nav}>
                     <div className={styles.logo}>
-                        <img src="/logos/mischari.png" alt="Mischari Logo" className={styles.logoImg} />
+                        <img src="/logos/mishari.png" alt="Mischari Logo" className={styles.logoImg} />
                     </div>
                     <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                     <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ''}`}>
