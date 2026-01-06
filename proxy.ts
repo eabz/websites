@@ -37,20 +37,19 @@ export function proxy(request: NextRequest) {
     // Production mapping
     // You can extend this mapping as needed
     const domainMap: Record<string, string> = {
-      // Live Domains
-      'xenopus.kindynos.mx': 'xenopus',
-      'ateria.kindynos.mx': 'ateria',
-      'enerkia.kindynos.mx': 'enerkia',
-      'jf-mark.kindynos.mx': 'jf-mark',
-      'mishari.kindynos.mx': 'mishari',
+      // Production Domains
+      'xenopusconsultores.com': 'xenopus',
+      'logisticateria.com': 'ateria',
+      'enerkia-22.com': 'enerkia',
+      'mischari.com.mx': 'mischari',
+      'jf-mark.com': 'jf-mark',
 
-      // Original/Legacy Domains (kept for reference or redirection if needed)
+      // Legacy/Alternative (keeping matches if they were used, updating targets)
       'xenopus.com': 'xenopus',
       'consulxenopus.com': 'xenopus',
       'aterialogistic.com': 'ateria',
       'enerkia22.com': 'enerkia',
       'consultoresjfmark.com': 'jf-mark',
-      'mischari.com.mx': 'mishari',
     };
 
     // Check direct match or www match

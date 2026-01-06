@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import styles from './mishari.module.css';
+import styles from './mischari.module.css';
 
 export default function MischariPage() {
     const [activeTab, setActiveTab] = useState('inicio');
@@ -15,15 +15,15 @@ export default function MischariPage() {
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const heroImages = [
-        '/images/mishari/hero.png',
-        '/images/mishari/steel.png',
-        '/images/mishari/engineers.png'
+        '/images/mischari/hero.png',
+        '/images/mischari/steel.png',
+        '/images/mischari/engineers.png'
     ];
 
     const smallImages = [
-        '/images/mishari/truck.png',
-        '/images/mishari/shelves.png',
-        '/images/mishari/tools.png'
+        '/images/mischari/truck.png',
+        '/images/mischari/shelves.png',
+        '/images/mischari/tools.png'
     ];
 
     // Hero carousel effect
@@ -60,7 +60,7 @@ export default function MischariPage() {
             <header className={styles.header}>
                 <div className={styles.nav}>
                     <div className={styles.logo}>
-                        <img src="/logos/mishari.png" alt="Mischari Logo" className={styles.logoImg} />
+                        <img src="/logos/mischari.png" alt="Mischari Logo" className={styles.logoImg} />
                     </div>
                     <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
                     <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ''}`}>
@@ -124,7 +124,7 @@ export default function MischariPage() {
 
                             <div className={styles.serviceFeature}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="/images/mishari/truck.png" alt="Logística Camión" />
+                                    <img src="/images/mischari/truck.png" alt="Logística Camión" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-truck-moving" style={{ marginRight: '10px' }}></i> Logística y Distribución</h3>
@@ -139,7 +139,7 @@ export default function MischariPage() {
 
                             <div className={`${styles.serviceFeature} ${styles.serviceFeatureEven}`}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="/images/mishari/shelves.png" alt="Almacén" />
+                                    <img src="/images/mischari/shelves.png" alt="Almacén" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-boxes" style={{ marginRight: '10px' }}></i> Abastecimiento Estratégico</h3>
@@ -154,7 +154,7 @@ export default function MischariPage() {
 
                             <div className={styles.serviceFeature}>
                                 <div className={styles.serviceImgContainer}>
-                                    <img src="/images/mishari/engineers.png" alt="Ingenieros" />
+                                    <img src="/images/mischari/engineers.png" alt="Ingenieros" />
                                 </div>
                                 <div className={styles.serviceText}>
                                     <h3 className={styles.heading}><i className="fas fa-clipboard-check" style={{ marginRight: '10px' }}></i> Consultoría Técnica</h3>
@@ -178,7 +178,7 @@ export default function MischariPage() {
 
                             <div className={styles.materialsGrid}>
                                 <div className={styles.materialItem} onClick={() => openModal('modal-acero')}>
-                                    <img src="/images/mishari/steel.png" alt="Vigas de Acero" />
+                                    <img src="/images/mischari/steel.png" alt="Vigas de Acero" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Aceros y Metales</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -186,7 +186,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-herramientas')}>
-                                    <img src="/images/mishari/tools.png" alt="Herramientas" />
+                                    <img src="/images/mischari/tools.png" alt="Herramientas" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Herramientas</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -194,7 +194,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-polimeros')}>
-                                    <img src="/images/mishari/polymers.png" alt="Polímeros" />
+                                    <img src="/images/mischari/polymers.png" alt="Polímeros" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Polímeros Industriales</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -202,7 +202,7 @@ export default function MischariPage() {
                                 </div>
 
                                 <div className={styles.materialItem} onClick={() => openModal('modal-construccion')}>
-                                    <img src="/images/mishari/hero.png" alt="Construcción" />
+                                    <img src="/images/mischari/hero.png" alt="Construcción" />
                                     <div className={styles.materialOverlay}>
                                         <h3 className={styles.heading}>Insumos Construcción</h3>
                                         <div className={styles.clickHint}><i className="fas fa-plus"></i> Ver Ficha Técnica</div>
@@ -254,7 +254,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="/images/mishari/steel.png" className={styles.modalImgStyle} alt="Acero" />
+                                <img src="/images/mischari/steel.png" className={styles.modalImgStyle} alt="Acero" />
                                 <p style={{ fontSize: '0.9rem', color: '#666' }}>Distribuimos materiales certificados bajo normas ASTM y SAE.</p>
                             </div>
                             <div className={styles.modalInfo}>
@@ -285,7 +285,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="/images/mishari/tools.png" className={styles.modalImgStyle} alt="Herramientas" />
+                                <img src="/images/mischari/tools.png" className={styles.modalImgStyle} alt="Herramientas" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Equipamiento de grado profesional diseñado para soportar las exigencias de líneas de producción continuas.</p>
@@ -315,7 +315,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="/images/mishari/polymers.png" className={styles.modalImgStyle} alt="Polimeros" />
+                                <img src="/images/mischari/polymers.png" className={styles.modalImgStyle} alt="Polimeros" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Materiales sintéticos avanzados para sustitución de piezas metálicas, aislamiento y resistencia química.</p>
@@ -345,7 +345,7 @@ export default function MischariPage() {
                         </div>
                         <div className={styles.modalBody}>
                             <div>
-                                <img src="/images/mishari/hero.png" className={styles.modalImgStyle} alt="Construccion" />
+                                <img src="/images/mischari/hero.png" className={styles.modalImgStyle} alt="Construccion" />
                             </div>
                             <div className={styles.modalInfo}>
                                 <p>Soluciones completas para obra civil e industrial, desde la cimentación hasta los acabados.</p>
