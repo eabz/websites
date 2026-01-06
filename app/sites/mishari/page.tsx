@@ -10,6 +10,9 @@ export default function MischariPage() {
     const [smallSlideIndex, setSmallSlideIndex] = useState(0);
     // Modal state
     const [modalOpen, setModalOpen] = useState<string | null>(null);
+    // Mobile Menu
+    const [menuOpen, setMenuOpen] = useState(false);
+    const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const heroImages = [
         'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80',
@@ -41,6 +44,7 @@ export default function MischariPage() {
 
     const showPage = (pageId: string) => {
         setActiveTab(pageId);
+        setMenuOpen(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -56,7 +60,8 @@ export default function MischariPage() {
             <header className={styles.header}>
                 <div className={styles.nav}>
                     <div className={styles.logo}>MISCHARI</div>
-                    <ul className={styles.navLinks}>
+                    <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
+                    <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ''}`}>
                         <li><button className={`${styles.navLink} ${activeTab === 'inicio' ? styles.navLinkActive : ''}`} onClick={() => showPage('inicio')}>Inicio</button></li>
                         <li><button className={`${styles.navLink} ${activeTab === 'nosotros' ? styles.navLinkActive : ''}`} onClick={() => showPage('nosotros')}>Quiénes Somos</button></li>
                         <li><button className={`${styles.navLink} ${activeTab === 'servicios' ? styles.navLinkActive : ''}`} onClick={() => showPage('servicios')}>Servicios</button></li>
@@ -361,7 +366,7 @@ export default function MischariPage() {
 
             <footer className={styles.footer} id="main-footer" style={{ display: activeTab === 'inicio' ? 'none' : 'block' }}>
                 <div className={styles.contentWrapper}>
-                    <p>© 2023 Mischari Comercializadora. Todos los derechos reservados.</p>
+                    <p>© 2025 Mischari Comercializadora. Todos los derechos reservados.</p>
                 </div>
             </footer>
         </div>

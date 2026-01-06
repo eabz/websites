@@ -488,12 +488,35 @@
     padding: 20px 0;
 }
 
+
+.menuToggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--colorTaupe);
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .navLinks {
         display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Simplified mobile nav for now */
+    .navLinks.show {
+        display: flex;
+    }
+
+    .menuToggle {
+        display: block;
+    }
+
     .aboutGrid,
     .contactContainer,
     .modalBody {
