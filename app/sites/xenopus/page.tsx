@@ -167,7 +167,7 @@ export default function XenopusPage() {
             </main>
 
             <footer className={styles.footer}>
-                <p>&copy; 2024 Xenopus Consultores. Precaución, Estrategia y Naturaleza.</p>
+                <p>&copy; 2025 Xenopus Consultores. Precaución, Estrategia y Naturaleza.</p>
             </footer>
         </div>
     );

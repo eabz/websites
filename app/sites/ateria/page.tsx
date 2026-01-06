@@ -132,7 +132,7 @@ export default function AteriaPage() {
             </main>
 
             <footer className={styles.footer}>
-                <p>&copy; 2024 Ateria Logística y Traslados. Orgullosamente Queretanos.</p>
+                <p>&copy; 2025 Ateria Logística y Traslados. Orgullosamente Queretanos.</p>
                 <p style={{ fontSize: '0.8rem', marginTop: '5px' }}>Contacto: informacion@aterialogistic.com</p>
             </footer>
         </div>
