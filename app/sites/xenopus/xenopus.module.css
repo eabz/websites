@@ -1,0 +1,323 @@
+/* --- VARIABLES Y BASE --- */
+.container {
+  --primary: #1B4D3E;    /* Verde Bosque */
+  --secondary: #8FBC8F;  /* Verde Salvia */
+  --accent: #DAA520;     /* Ocre Dorado */
+  --bg-color: #F7F9F7;   /* Blanco con tinte verde muy pálido */
+  --text-main: #2C3E50;
+  --glass: rgba(255, 255, 255, 0.85);
+
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  /* Fondo sutil con textura orgánica (patrón CSS) */
+  background-image: radial-gradient(#1B4D3E 0.5px, transparent 0.5px), radial-gradient(#1B4D3E 0.5px, var(--bg-color) 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  min-height: 100vh;
+}
+
+.title, .subtitle, .heading {
+  font-family: 'Lora', serif;
+  color: var(--primary);
+}
+
+/* --- NAVEGACIÓN TIPO "CÁPSULA" --- */
+.header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  z-index: 1000;
+}
+
+.navCapsule {
+  background: var(--glass);
+  backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(27, 77, 62, 0.1);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.navUl {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--secondary);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navLink:hover {
+  color: var(--primary);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.menuToggle {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.main {
+  padding-top: 120px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pageSection {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  animation: flowIn 0.8s ease-out;
+}
+
+@keyframes flowIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- INICIO: ORGÁNICO --- */
+.sectionInicio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  font-family: 'Lora', serif;
+  color: var(--primary);
+}
+
+.heroTitle span {
+  color: var(--secondary);
+  font-style: italic;
+}
+
+.heroText {
+  max-width: 700px;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.btnOrganic {
+  background-color: var(--primary);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px 50px 50px 0; /* Forma de hoja/gota */
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(27, 77, 62, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btnOrganic:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-color: var(--secondary);
+  border-radius: 50px 50px 0 50px; /* Cambia la forma al hover */
+}
+
+/* --- TARJETAS ORGÁNICAS (General) --- */
+.organicGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.organicCard {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px; /* Bordes suaves */
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+  border-bottom: 4px solid transparent;
+}
+
+.organicCard:hover {
+  transform: translateY(-10px);
+  border-bottom: 4px solid var(--secondary);
+}
+
+.iconCircle {
+  width: 60px;
+  height: 60px;
+  background-color: #E8F5E9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+/* --- NOSOTROS (Ecosistema) --- */
+.highlightBox {
+  background: linear-gradient(135deg, var(--primary), #2C3E50);
+  color: white;
+  border-radius: 30px;
+  padding: 3rem;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightBox h2, .highlightBox h3 {
+  color: white;
+  font-family: 'Lora', serif;
+}
+
+.highlightBox::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+/* --- CONTACTO --- */
+.contactContainer {
+  background: white;
+  border-radius: 30px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+}
+
+.contactDetails h3 {
+  margin-bottom: 1.5rem;
+  font-family: 'Lora', serif;
+  color: var(--primary);
+}
+
+.scheduleBox {
+  background-color: #F0F7F4;
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+.scheduleItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.scheduleItemClosed {
+  color: #999;
+}
+
+.formInput, .formTextarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fafafa;
+  font-family: 'Nunito', sans-serif;
+  transition: border 0.3s;
+}
+
+.formInput:focus, .formTextarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+  background: white;
+}
+
+/* --- FOOTER --- */
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .header { width: 95%; top: 10px; }
+  .navCapsule { padding: 0.8rem 1.5rem; }
+  .navUl {
+     display: none;
+     position: absolute;
+     top: 70px;
+     left: 0;
+     width: 100%;
+     background: white;
+     border-radius: 20px;
+     padding: 20px;
+     flex-direction: column;
+     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+     text-align: center;
+  }
+  .navUl.show { display: flex; }
+  .menuToggle { display: block; }
+  .contactContainer { grid-template-columns: 1fr; }
+  .heroTitle { font-size: 2.5rem; }
+}
