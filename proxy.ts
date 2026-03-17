@@ -53,7 +53,7 @@ export function proxy(request: NextRequest) {
 
       // New sites
       'enfrazk2.com': 'enfrazk2',
-      'flubit.com': 'flubit',
+      'flubip.com': 'flubip',
       'lugia-foods.com': 'lugia',
       'litwick-construccion.com': 'litwick',
     };
