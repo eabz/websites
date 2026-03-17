@@ -83,7 +83,7 @@ export default function LitwickPage() {
                         <h3 className={styles.carouselTitle}>Interiores y Acabados de Madera</h3>
                         <div className={styles.carouselWrapper}>
                             <div className={styles.carouselItem}>
-                                <img src="https://images.unsplash.com/photo-1521579564177-f27eb66eeb7b?auto=format&fit=crop&w=600&q=80" alt="Interior 1" />
+                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" alt="Interior 1" />
                                 <div className={styles.carouselItemOverlay}>Remodelación Rústica</div>
                             </div>
                             <div className={styles.carouselItem}>

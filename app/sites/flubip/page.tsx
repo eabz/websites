@@ -57,7 +57,7 @@ export default function FlubipPage() {
                                     <p>No solo te entregamos un reporte; te acompañamos en la implementación para asegurar que ese <em>plus</em> se refleje en tus resultados reales.</p>
                                 </div>
                             </div>
-                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=800&q=80" alt="Consultoría Moderna" className={styles.woodImage} />
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Consultoría Moderna" className={styles.woodImage} />
                         </div>
                     </section>
                 )}
