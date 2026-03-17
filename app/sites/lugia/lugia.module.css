@@ -1,0 +1,334 @@
+/* === LUGIA FOODS CSS MODULE === */
+.body {
+    --lg-appetite-red: #E63946;
+    --lg-fresh-green: #2A9D8F;
+    --lg-warm-cream: #FFFAF0;
+    --lg-text-dark: #1D3557;
+    --lg-accent-yellow: #F4A261;
+    --lg-white: #FFFFFF;
+
+    background-color: var(--lg-warm-cream);
+    color: var(--lg-text-dark);
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.6;
+}
+
+/* === HEADER === */
+.header {
+    background-color: var(--lg-white);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-bottom: 4px solid var(--lg-appetite-red);
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--lg-appetite-red);
+    text-transform: lowercase;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.logo span {
+    color: var(--lg-fresh-green);
+}
+
+.navMenu {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.navMenu a {
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--lg-text-dark);
+    transition: color 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+}
+
+.navMenu a:hover {
+    color: var(--lg-appetite-red);
+}
+
+.btnNav {
+    background-color: var(--lg-fresh-green);
+    color: var(--lg-white) !important;
+    padding: 8px 20px;
+    border-radius: 30px;
+}
+
+.btnNav:hover {
+    background-color: #218276 !important;
+}
+
+/* === SECTIONS === */
+.section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sectionInicio {
+    max-width: 100%;
+    padding: 0;
+    background-color: var(--lg-white);
+}
+
+.sectionInsumos {
+    background-color: var(--lg-white);
+    max-width: 100%;
+    padding: 80px 20px;
+}
+
+.sectionTitle {
+    font-size: 2.8rem;
+    color: var(--lg-appetite-red);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+}
+
+.sectionSubtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--lg-fresh-green);
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* === HERO === */
+.heroContainer {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(29, 53, 87, 0.7), rgba(29, 53, 87, 0.8)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80') center/cover;
+    padding: 20px;
+}
+
+.heroContent {
+    max-width: 800px;
+    color: var(--lg-white);
+}
+
+.heroContent h1 {
+    font-size: 4rem;
+    color: var(--lg-white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Outfit', sans-serif;
+}
+
+.heroContent h1 span {
+    color: var(--lg-accent-yellow);
+}
+
+.heroContent p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.btnMain {
+    display: inline-block;
+    background-color: var(--lg-appetite-red);
+    color: var(--lg-white);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Outfit', sans-serif;
+}
+
+.btnMain:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* === NOSOTROS === */
+.grid2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.imageFood {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: -15px 15px 0px var(--lg-accent-yellow);
+}
+
+.textBox h2 {
+    font-size: 2rem;
+    color: var(--lg-text-dark);
+    margin-bottom: 20px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.textBox p {
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
+
+.coverageBadge {
+    display: inline-block;
+    background-color: var(--lg-fresh-green);
+    color: var(--lg-white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+/* === INSUMOS / CATALOG === */
+.insumosContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid3col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.cardFood {
+    background-color: var(--lg-warm-cream);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.cardFood:hover {
+    transform: translateY(-10px);
+}
+
+.cardFood img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardFoodContent {
+    padding: 25px;
+    text-align: center;
+}
+
+.cardFoodContent h3 {
+    color: var(--lg-appetite-red);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* === CONTACTO === */
+.contactBox {
+    background-color: var(--lg-white);
+    border-radius: 30px;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-top: 8px solid var(--lg-appetite-red);
+}
+
+.contactInfo {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contactForm {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contactInfo h3 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--lg-text-dark);
+    font-family: 'Outfit', sans-serif;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.contactIcon {
+    font-size: 1.5rem;
+    color: var(--lg-fresh-green);
+}
+
+.contactForm input,
+.contactForm textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #EEE;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: var(--lg-warm-cream);
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+    outline: none;
+    border-color: var(--lg-accent-yellow);
+    background-color: var(--lg-white);
+}
+
+.btnSubmit {
+    background-color: var(--lg-appetite-red);
+    color: var(--lg-white);
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Outfit', sans-serif;
+}
+
+.btnSubmit:hover {
+    background-color: #C1121F;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .header { flex-direction: column; padding: 15px; gap: 15px; }
+    .navMenu { flex-wrap: wrap; justify-content: center; }
+    .heroContent h1 { font-size: 2.8rem; }
+    .grid2col { grid-template-columns: 1fr; }
+    .imageFood { box-shadow: none; height: 300px; }
+    .contactBox { padding: 30px; }
+}

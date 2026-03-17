@@ -50,6 +50,12 @@ export function proxy(request: NextRequest) {
       'aterialogistic.com': 'ateria',
       'enerkia22.com': 'enerkia',
       'consultoresjfmark.com': 'jf-mark',
+
+      // New sites
+      'enfrazk2.com': 'enfrazk2',
+      'flubit.com': 'flubit',
+      'lugia-foods.com': 'lugia',
+      'litwick-construccion.com': 'litwick',
     };
 
     // Check direct match or www match
