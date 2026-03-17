@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import styles from './flubit.module.css';
+import styles from './flubip.module.css';
 
-export default function FlubitPage() {
+export default function FlubipPage() {
     const [activeTab, setActiveTab] = useState('inicio');
 
     const showPage = (pageId: string) => {
